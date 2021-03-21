@@ -1,0 +1,104 @@
+<template>
+  <!-- <select name="CompanyOpt" id="CompanyOpt" onfocus={optionSelected} onchange={optionSelected}> -->
+  <select name="OwnerOpt" id="OwnerOpt" onchange={optionOwnerSelected}>
+    <option value="noOpt">Selecciona ...</option>
+    <option value="newOwnerOpt">Registro nueva propietario</option>
+    <option value="notNewOwnerOpt">Propietario existente</option>
+  </select>
+  <br><br>
+
+<template if:true={newOwner}>
+  <form>
+    <h1>Introduzca los datos para poder registrar el Propietario</h1>
+    <label for="ownerName">Nombre Propietario:</label><br>
+    <input type="text" id="ownerName" name="ownerName" maxlength="50" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" maxlength="20" required><br>
+    <h1>Introduzca los datos para poder registrar la parcela</h1>
+    <label for="parcelaHmax">Parcela -> Altura vuelo máxima:</label><br>
+    <input type="text" id="parcelaHmax" name="parcelaHmax" required><br>
+    <label for="parcelaHmin">Parcela -> Altura vuelo mínima:</label><br>
+    <input type="text" id="parcelaHmin" name="parcelaHmin" required><br>
+    <label>Parcela -> Pesticida aceptado:</label><br>
+    <label for="pesticida1">Pesticida A</label>
+    <input type="checkbox" id="pesticida1" name="pesticida1">
+    <label for="pesticida2">Pesticida B</label>
+    <input type="checkbox" id="pesticida2" name="pesticida2">
+    <label for="pesticida3">Pesticida C</label>
+    <input type="checkbox" id="pesticida3" name="pesticida3">
+    <label for="pesticida4">Pesticida D</label>
+    <input type="checkbox" id="pesticida4" name="pesticida4">
+    <label for="pesticida5">Pesticida E</label>
+    <input type="checkbox" id="pesticida5" name="pesticida5">
+    <br><br><button onclick={createOwner}>Confirmar</button>
+  </form>
+</template>
+<template if:true={existentOwner}>
+  <!--request de public address -->
+  <h1>Introduzca la dirección del propietario a consultar</h1>
+  <form>
+  <label for="pubAddress">Public Address:</label><br>
+  <input type="text" id="pubAddress" name="pubAddress" length="42" required><br>
+  <label for="passOwner">Password:</label><br>
+  <input type="password" id="passOwner" name="passOwner" maxlength="20" required><br>
+  <br><br><button onclick={getParcelas}>Listar Parcelas del propietario</button>
+</form>
+</template>
+<template if:true={showList}>
+  <div class="list">
+    <button style="width: 100%" onclick={handleNewParcela}>Registrar nuevo dron</button>
+    <!-- <form>
+    <label for="passAddress">Password:</label><br>
+    <input type="password" id="passAddress" name="passAddress" maxlength="20" required><br>
+    </form>-->
+    <h2>Seleccione la parcela sobre la que desee contratar un dron</h2>
+    <template for:each={parcelas} for:item="parcela" for:index="index">
+      <a key={parcela.id} class="parcela" data-index={index}>
+        <div>
+          <p class="tokenId">{parcela.id}</p>
+          <p class="icon time">{parcela.uri}</p>
+          <button data-index={index} onclick={handleParcelaClick}>Ver datos parcela</button>
+          <button data-index={index} onclick={handleListDrones}>Ver drones disponibles</button>
+        </div>
+      </a>
+    </template>
+  </div>
+</template>
+
+<template if:true={showListDrones}>
+  <div class="list">
+    <template for:each={drones} for:item="dron" for:index="index">
+      <a key={dron.id} class="dron" data-index={index}>
+        <div>
+          <p class="tokenId">TokenId: {dron.id}</p>
+          <p class="icon time">TokenUri: {dron.uri}</p>
+          <p class="tokenId">Coste: {dron.coste}</p>
+          <button data-index={index} onclick={handleContratarDronClick}>Contratar Dron</button>
+        </div>
+      </a>
+    </template>
+  </div>
+</template>
+
+<template if:true={newParcela}>
+  <form>
+    <h1>Introduzca los datos para poder registrar la Parcela</h1>
+    <label for="parcelaHmax">Parcela -> Altura vuelo máxima:</label><br>
+    <input type="text"  name="parcelaHmax" required><br>
+    <label for="parcelaHmin">Parcela -> Altura vuelo mínima:</label><br>
+    <input type="text" name="parcelaHmin" required><br>
+    <label>Parcela -> Pesticidas aceptado:</label><br>
+    <label for="pesticida1">Pesticida A</label>
+    <input type="checkbox" name="pesticida1">
+    <label for="pesticida2">Pesticida B</label>
+    <input type="checkbox" name="pesticida2">
+    <label for="pesticida3">Pesticida C</label>
+    <input type="checkbox" name="pesticida3">
+    <label for="pesticida4">Pesticida D</label>
+    <input type="checkbox" name="pesticida4">
+    <label for="pesticida5">Pesticida E</label>
+    <input type="checkbox" name="pesticida5">
+    <br><br><button onclick={createParcela}>Confirmar</button>
+  </form>
+</template>
+</template>

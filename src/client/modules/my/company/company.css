@@ -1,0 +1,61 @@
+.center {
+    text-align: center;
+}
+
+img {
+    max-width: 150px;
+}
+
+.greeting {
+    height: 75px;
+}
+
+.content {
+    padding: 5 3rem;
+    margin-top: 30px;
+}
+header {
+    padding: 1rem;
+    display: flex;
+    color: #ffffff;
+    background: #0288d1;
+    box-shadow: 0 4px 3px rgba(1, 87, 155, 0.5);
+    align-items: center;
+}
+header img {
+    height: 5rem;
+    margin-right: 1rem;
+}
+header h2 {
+    font-size: 1.75rem;
+    font-weight: 300;
+}
+.btn-group button {
+    background-color: rgb(234, 247, 235); /* Green background */
+    border: 1px solid rgb(3, 3, 3); /* Green border */
+    color: rgb(0, 0, 0); /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+    height: 25vh;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
+}
+.responsive {
+    width: 100%;
+    height: auto;
+}

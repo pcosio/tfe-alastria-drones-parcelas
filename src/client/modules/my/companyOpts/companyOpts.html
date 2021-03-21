@@ -1,0 +1,104 @@
+<template>
+    <!-- <select name="CompanyOpt" id="CompanyOpt" onfocus={optionSelected} onchange={optionSelected}> -->
+    <select name="CompanyOpt" id="CompanyOpt" onchange={optionSelected}>
+      <option value="noOpt">Selecciona ...</option>
+      <option value="newCompanyOpt">Registro nueva empresa</option>
+      <option value="notNewCompanyOpt">Empresa existente</option>
+    </select>
+    <br><br>
+    <!-- <input type="submit" value="Continuar"> -->
+
+  <template if:true={newCompany}>
+    <form>
+      <h1>Introduzca los datos para poder registrar la empresa</h1>
+      <label for="companyName">Nombre Empresa:</label><br>
+      <input type="text" id="companyName" name="companyName" maxlength="50" required><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password" maxlength="20" required><br>
+      <h1>Introduzca los datos para poder registrar el Dron</h1>
+      <label for="dronHmax">Dron -> Altura vuelo máxima:</label><br>
+      <input type="text" id="dronHmax" name="dronHmax" required><br>
+      <label for="dronHmin">Dron -> Altura vuelo mínima:</label><br>
+      <input type="text" id="dronHmin" name="dronHmin" required><br>
+      <label for="coste">Dron -> coste:</label><br>
+      <input type="text" id="coste" name="coste" required><br>
+      <label>Dron -> Pesticidas que puede suministrar:</label><br>
+      <label for="pesticida1">Pesticida A</label>
+      <input type="checkbox" id="pesticida1" name="pesticida1">
+      <label for="pesticida2">Pesticida B</label>
+      <input type="checkbox" id="pesticida2" name="pesticida2">
+      <label for="pesticida3">Pesticida C</label>
+      <input type="checkbox" id="pesticida3" name="pesticida3">
+      <label for="pesticida4">Pesticida D</label>
+      <input type="checkbox" id="pesticida4" name="pesticida4">
+      <label for="pesticida5">Pesticida E</label>
+      <input type="checkbox" id="pesticida5" name="pesticida5">
+      <br><br><button onclick={createCompany}>Confirmar</button>
+    </form>
+  </template>
+  <template if:true={existentCompany}>
+    <!--request de public address -->
+    <h1>Introduzca la public address de la empresa</h1>
+    <label for="pubAddress">Public Address:</label><br>
+    <input type="text" id="pubAddress" name="pubAddress" length="42" required><br>
+    <br><br><button onclick={getDrones}>Listar Drones de la empresa</button>
+  </template>
+  <template if:true={showList}>
+    <div class="list">
+      <button style="width: 100%" onclick={handleNewDron}>Registrar nuevo dron</button>
+      <button style="width: 100%" onclick={handlePendingJobsDron}>Listar todos los trabajos pendientes por asignar</button>
+      <form>
+      <label for="passAddress">Password:</label><br>
+      <input type="password" id="passAddress" name="passAddress" maxlength="20" required><br>
+      </form>
+      <template for:each={drones} for:item="dron" for:index="index">
+        <a key={dron.id} class="dron" data-index={index} onclick={handleDronClick}>
+          <div>
+            <p class="tokenId">{dron.id}</p>
+            <p class="icon time">{dron.uri}</p>
+          </div>
+        </a>
+      </template>
+    </div>
+  </template>
+  <template if:true={showListJobs}>
+    <div class="list">
+      <h2>Listado de todos los trabajos pendientes por asignar de la empresa</h2>
+      <template for:each={jobs} for:item="job" for:index="index">
+        <a key={job.id} class="job" data-index={index} onclick={handleJobClick}>
+          <div>
+            <p>JobId: {job.id}</p>
+            <p>Propietario parcela: {job.from}</p>
+            <p>TokenId parcela: {job.tokenIdParcela}</p>
+            <p>TokenId dron: {job.tokenIdDron}</p>
+            <p>Precio dron: {job.cost}</p>
+          </div>
+        </a>
+      </template>
+    </div>
+  </template>
+
+  <template if:true={newDron}>
+    <form>
+      <h1>Introduzca los datos para poder registrar el Dron</h1>
+      <label for="dronHmax">Dron -> Altura vuelo máxima:</label><br>
+      <input type="text"  name="dronHmax" required><br>
+      <label for="dronHmin">Dron -> Altura vuelo mínima:</label><br>
+      <input type="text" name="dronHmin" required><br>
+      <label for="coste2">Dron -> coste:</label><br>
+      <input type="text" id="coste2" name="coste2" required><br>
+      <label>Dron -> Pesticidas que puede suministrar:</label><br>
+      <label for="pesticida1">Pesticida A</label>
+      <input type="checkbox" name="pesticida1">
+      <label for="pesticida2">Pesticida B</label>
+      <input type="checkbox" name="pesticida2">
+      <label for="pesticida3">Pesticida C</label>
+      <input type="checkbox" name="pesticida3">
+      <label for="pesticida4">Pesticida D</label>
+      <input type="checkbox" name="pesticida4">
+      <label for="pesticida5">Pesticida E</label>
+      <input type="checkbox" name="pesticida5">
+      <br><br><button onclick={createDron}>Confirmar</button>
+    </form>
+  </template>
+</template>

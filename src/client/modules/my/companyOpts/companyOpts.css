@@ -1,0 +1,83 @@
+:host {
+    width: 100%;
+    padding: 2rem;
+    color: #080707;
+  }
+  .dron {
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    justify-content: space-between;
+    text-align: left;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: transparent;
+    border: 1px solid #dddbda;
+    align-items: center;
+    border-left: 3px solid #0277bd;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .dron:hover {
+    background-color: #e1f5fe;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .dron p {
+    margin: 0;
+  }
+  .dron .title {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  .dron .icon {
+    color: #0288d1;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 1.75rem;
+  }
+  .dron .icon.time {
+    background-image: url(https://developer.salesforce.com/files/js-dev/icons/location.svg);
+    margin-top: .6rem;
+  }
+  .dron .icon.room {
+    background-image: url(https://developer.salesforce.com/files/js-dev/icons/location.svg);
+    margin-top: .4rem;
+  }
+
+  .job {
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    justify-content: space-between;
+    text-align: left;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: transparent;
+    border: 1px solid #dddbda;
+    align-items: center;
+    border-left: 3px solid #0277bd;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .job:hover {
+    background-color: #e1f5fe;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .job p {
+    margin: 0;
+  }
+  .job .title {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  .job .icon {
+    color: #0288d1;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 1.75rem;
+  }
+  .job .icon.time {
+    background-image: url(https://developer.salesforce.com/files/js-dev/icons/location.svg);
+    margin-top: .6rem;
+  }
+
